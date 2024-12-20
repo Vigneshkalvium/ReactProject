@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.consoleCantainer {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.consoleCantainer video {
+    width: 100vw;
+    object-fit: cover;
+    position: relative;
+    height: 100vh;
+    opacity: 1;
+    z-index: -5;
+}
+
+.consoleCantainer .console-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.memories {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 340px;
+    height: 70px;
+    background-color: rgba(129, 129, 129, 0);
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+    text-shadow: 0 0 5px white,
+    0 0 10px white;
+    letter-spacing: 2px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+.memories::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 10px;
+    z-index: -1;
+    background: linear-gradient(90deg, transparent, rgb(120, 120, 120), transparent);
+    animation: borderRotate 2s linear infinite;
+    pointer-events: none; 
+}
+
+.memories::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(128, 128, 128, 0);
+    border-radius: 10px;
+    z-index: -2;
+    border: 2px grey solid;
+    box-shadow: 10px 10px 10px rgba(255, 255, 255, 0.5);
+}
+
+.memories p {
+    transition: transform 0.3s ease;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 25px;
+    text-transform: uppercase; 
+}
+
+.memories:hover {
+    transform: scale(1.4);
+    z-index: 5;
+}
+
+.memories:hover p {
+    transform: translateX(-100%);
+    left: 160px;
+}
+
+/* Keyframes for rotating border */
+@keyframes borderRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.memories1 {
+    position: relative;
+    width: 346px;
+    height: 76px;
+    background: repeating-conic-gradient(from var(--a1), #ff9a9e 0%, #fad0c4 10%, transparent 10%, transparent 30%);
+    animation: animate 2s linear infinite, animate2 4s linear infinite;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.memories1 p {
+    z-index: 2;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+}
+
+@property --a1 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@property --a2 {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+/* First animation */
+@keyframes animate {
+    from {
+        --a1: 0deg;
+    }
+    to {
+        --a1: 360deg;
+    }
+}
+
+/* Second slower animation for extra layering */
+@keyframes animate2 {
+    from {
+        --a2: 360deg;
+    }
+    to {
+        --a2: 0deg;
+    }
+}
+
+/* Add a second gradient with a delayed animation */
+.memories1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: repeating-conic-gradient(from var(--a2), #a18cd1 0%, #fbc2eb 20%, transparent 20%, transparent 40%);
+    z-index: -1;
+    animation: animate2 6s linear infinite;
+}
+
+.memories1::after {
+    content: '';
+    inset: 2px;
+    position: absolute;
+    background-color: rgb(128, 128, 128);
+    border-radius: 20px;
+    z-index: -2;
+}
+
+/* Interaction effect */
+.memories1:hover {
+    transform: scale(1.4) rotate(10deg);
+    z-index: 5;
+}
